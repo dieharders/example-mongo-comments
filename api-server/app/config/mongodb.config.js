@@ -1,3 +1,3 @@
 module.exports = {
-    url: 'mongodb://localhost:27017/nodejs-demo'
+    url: process.env.MONGOLAB_URI
 }

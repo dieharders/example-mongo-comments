@@ -1,54 +1,10 @@
-// Init local database. Mimicks data in a mongo DB.
-// Any edits/changes will be lost when restarting the front-end.
-var customers = [
-    {
-        _id: "1",
-        firstname: "Johnny",
-        lastname: "Storm",
-        age: 26,
-        hobbies: [
-            "Playing sports🏆",
-            "Dating girls😎",
-            "Catching fire🔥"
-        ]
-    },
-    {
-        _id: "2",
-        firstname: "Sue",
-        lastname: "Storm",
-        age: 29,
-        hobbies: [
-            "Turning invisible✨",
-            "Making costumes👘",
-            "Being sassy"
-        ]
-    },
-    {
-        _id: "3",
-        firstname: "Reed",
-        lastname: "Richards",
-        age: 47,
-        hobbies: [
-            "Being a dick🤬",
-            "Being super stretchy",
-            "Doing science⚗️"
-        ]
-    },
-    {
-        _id: "4",
-        firstname: "Ben",
-        lastname: "Grimm",
-        age: 36,
-        hobbies: [
-            "Clobberin things💪",
-            "Flying planes🛩️",
-            "Playing football🏈"
-        ]
-    }
-]
+const dbConfig = require('../config/mongodb.config.js');
+const mongojs = require('mongojs');
+const db = mongojs(dbConfig.url, ['comments']); // Database 'collection' we want documents from
 
 //** Functions for local DB **//
 //
+/*
 // Find index of customer by their _id
 function findCustomerIndex(id) {
     let index = customers.findIndex(function(item, i){
@@ -56,140 +12,194 @@ function findCustomerIndex(id) {
     });
     return index;
 }
-// POST a Customer //
-exports.create = (req, res) => {
-    // Need to add a unique id to this object (Auto added by MongoDB, etc)
-    let newObj = req.body;
-    let randNum = Math.round(100000*Math.random());
-    newObj._id = randNum.toString();
-    // Add a new Customer to local DB
-    customers.push(newObj);
-    // Send updated Customer list to client
-    res.json(customers);
-};
-// FETCH a customers
-exports.findAll = (req, res) => {
-    // Send Customers list to client
-    res.json(customers);
-};
-// FIND a Customer
-exports.findOne = (req, res) => {
-    let id = req.params.customerId;
-    let index = findCustomerIndex(id);
-    res.json(customers[index]);
-};
-// UPDATE a Customer
-exports.update = (req, res) => {
-    // Find customer and update it
-    let id = req.body._id;
-    let index = findCustomerIndex(id);
-    // Edit local db with new customer
-    customers[index] = req.body;
-    // Send new customer to client
-    res.json(req.body);
-};
-// DELETE a Customer
-exports.delete = (req, res) => {
-    let id = req.params.customerId;
-    let index = findCustomerIndex(id);
-    // Delete customer from array at position 'index'
-    customers.splice(index, 1);
-    // Send updated customer data
-    res.json(customers);
-};
+*/
 
 //** Functions for MongoDB **//
-/*
 const Customer = require('../models/customer.model.js');
 //
-// POST a Customer
-exports.create = (req, res) => {
-    // Create a Customer
-    const customer = new Customer(req.body);
+// Overwrite w/ default data
+exports.initial = () => {
+    // Delete all data in db
+    db.comments.remove( {data: null}, function(err, data) {
+        // Return error if something fucks up
+        if(err) {
+            console.log(err);
+        } else {
+            // Otherwise return content from db query
+            console.log('All DB data removed! ' + JSON.stringify(data) );
 
-    // Save a Customer in the MongoDB
-    customer.save()
-    .then(data => {
-        res.json(data);
-    }).catch(err => {
-        res.status(500).json({
-            msg: err.message
-        });
+            // Initialize new data
+            var customers = [
+                {
+                    firstname: "Johnny",
+                    lastname: "Storm",
+                    age: 26,
+                    hobbies: [
+                        "Playing sports🏆",
+                        "Dating girls😎",
+                        "Catching fire🔥"
+                    ]
+                },
+                {
+                    firstname: "Sue",
+                    lastname: "Storm",
+                    age: 29,
+                    hobbies: [
+                        "Turning invisible✨",
+                        "Making costumes👘",
+                        "Being sassy"
+                    ]
+                },
+                {
+                    firstname: "Reed",
+                    lastname: "Richards",
+                    age: 47,
+                    hobbies: [
+                        "Being a dick🤬",
+                        "Being super stretchy",
+                        "Doing science⚗️"
+                    ]
+                },
+                {
+                    firstname: "Ben",
+                    lastname: "Grimm",
+                    age: 36,
+                    hobbies: [
+                        "Clobberin things💪",
+                        "Flying planes🛩️",
+                        "Playing football🏈"
+                    ]
+                }
+            ]
+            
+            // Save to MongoDB.
+            // This will overwrite current database w/ default values above
+            // each time this server is spun up.
+            for (let i = 0; i < customers.length; i++) { 
+                const customer = customers[i];
+
+                db.comments.save(customer, function(err, res) {
+                    // Something went wrong, return error
+                    if(err) {
+                        console.log(err);
+                    } else {
+                        // Success! Return json data we sent
+                        console.log('Success. New profile saved: '+JSON.stringify(res));
+
+                        if (i === customers.length-1) {
+                            console.log(">>> Done - Initial Data!");
+                            return null;
+                        };
+                    }
+                });
+            }
+        }
     });
+}
+
+// POST a Comment
+exports.create = (req, res) => {
+    // Data passed from client-side form
+    const comment = new Customer(req.body);
+    // Validate there is json data
+    // If empty properties, send error response
+    if (!comment) {
+        res.status(400);
+        res.json({
+            "error": "Invalid Data"
+        });
+    // Otherwise OK, so save data
+    } else {
+        db.comments.save(comment, function(err, comment) {
+            // Something went wrong, return error
+            if(err) {
+                res.send(err);
+            }
+            // Success! Return json data we sent
+            console.log('Success. New comment added: '+JSON.stringify(comment));
+            res.json(comment);
+        });
+    }
 };
-// FETCH all Customers
+// FETCH all Comments
 exports.findAll = (req, res) => {
-    Customer.find()
-    .then(customers => {
-        res.json(customers);
-    }).catch(err => {
-        res.status(500).send({
-            msg: err.message
-        });
+    // Return all documents in 'tasks' collection from db.tasks
+    db.comments.find(function(err, data) {
+        // Send back error if something fucks up
+        if(err) {
+            res.send(err);
+        }
+        // Otherwise send back content from db query
+        res.json(data);
     });
 };
-// FIND a Customer
+
+// FIND a Comment
 exports.findOne = (req, res) => {
-    Customer.findById(req.params.customerId)
-    .then(customer => {
-        if(!customer) {
+    // Return one element using a document's id
+    db.comments.findOne( {_id: mongojs.ObjectId(req.params.commentId)}, function(err, comment) {
+        // Return error if something fucks up
+        if(err) {
+            console.log('Error retrieving comment');
             return res.status(404).json({
-                msg: "Customer not found with id " + req.params.customerId
-            });            
-        }
-        res.json(customer);
-    }).catch(err => {
-        if(err.kind === 'ObjectId') {
+                msg: "Error retrieving comment: " + err
+            });
+        } else if (comment === null) {
+            console.log('Error retrieving comment');
             return res.status(404).json({
-                msg: "Customer not found with id " + req.params.customerId
-            });                
+                msg: "Error retrieving comment!"
+            });
         }
-        return res.status(500).json({
-            msg: "Error retrieving Customer with id " + req.params.customerId
-        });
+        // Otherwise return content from db query
+        res.json(comment);
     });
 };
-// UPDATE a Customer
+// UPDATE a Comment
 exports.update = (req, res) => {
-    // Find customer and update it
-    Customer.findByIdAndUpdate(req.body._id, req.body, {new: true})
-    .then(customer => {
-        if(!customer) {
-            return res.status(404).json({
-                msg: "Customer not found with id " + req.params.customerId
-            });
-        }
-        res.json(customer);
-    }).catch(err => {
-        if(err.kind === 'ObjectId') {
-            return res.status(404).json({
-                msg: "Customer not found with id " + req.params.customerId
-            });                
-        }
-        return res.status(500).json({
-            msg: "Error updating customer with id " + req.params.customerId
+    // Data passed from client-side form
+    var comment = req.body._id;
+    // Validate there is json data
+    // If empty properties, send error response
+    if (!comment) {
+        res.status(400);
+        res.json({
+            "error": "Invalid Data"
         });
-    });
+    // Otherwise OK, so save data
+    } else {
+        db.comments.save(comment, function(err, comment) {
+            // Something went wrong, return error
+            if(err) {
+                return res.status(500).json({
+                    msg: "Error updating customer with id " + req.params.commentId
+                });
+            }
+            // Success! Return json data we sent
+            console.log('Success. New profile saved: '+JSON.stringify(comment));
+            res.json(comment);
+        });
+    }
 };
-// DELETE a Customer
+// DELETE a Comment
 exports.delete = (req, res) => {
-    Customer.findByIdAndRemove(req.params.customerId)
-    .then(customer => {
-        if(!customer) {
-            return res.status(404).json({
-                msg: "Customer not found with id " + req.params.customerId
-            });
-        }
-        res.json({msg: "Customer deleted successfully!"});
-    }).catch(err => {
-        if(err.kind === 'ObjectId' || err.name === 'NotFound') {
-            return res.status(404).json({
-                msg: "Customer not found with id " + req.params.customerId
-            });                
-        }
-        return res.status(500).json({
-            msg: "Could not delete customer with id " + req.params.customerId
+    // Validate there is json data
+    // If empty properties, send error response
+    if(req.params.commentId === null) {
+        res.status(400);
+        res.json({
+            "error": "No id specified"
         });
-    });
+    // Otherwise OK, so remove data
+    } else {
+        // Remove one element using a document's id
+        db.comments.remove( {_id: mongojs.ObjectId(req.params.commentId)}, function(err, comment) {
+            // Return error if something fucks up
+            if(err) {
+                res.send(err);
+            }
+            // Otherwise return content from db query
+            console.log('Profile '+req.params.commentId+' removed!');
+            res.json(comment);
+        });
+    }
 };
-*/
