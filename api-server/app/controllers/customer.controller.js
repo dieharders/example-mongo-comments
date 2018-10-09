@@ -2,21 +2,9 @@ const dbConfig = require('../config/mongodb.config.js');
 const mongojs = require('mongojs');
 const db = mongojs(dbConfig.url, ['comments']); // Database 'collection' we want documents from
 
-//** Functions for local DB **//
-//
-/*
-// Find index of customer by their _id
-function findCustomerIndex(id) {
-    let index = customers.findIndex(function(item, i){
-        return item._id === id; // Check id's and return object's index in array
-    });
-    return index;
-}
-*/
-
 //** Functions for MongoDB **//
-const Customer = require('../models/customer.model.js');
-//
+const Comment = require('../models/customer.model.js');
+
 // Overwrite w/ default data
 exports.initial = () => {
     // Delete all data in db
@@ -29,7 +17,7 @@ exports.initial = () => {
             console.log('All DB data removed! ' + JSON.stringify(data) );
 
             // Initialize new data
-            var customers = [
+            var comments = [
                 {
                     firstname: "Johnny",
                     lastname: "Storm",
@@ -75,10 +63,10 @@ exports.initial = () => {
             // Save to MongoDB.
             // This will overwrite current database w/ default values above
             // each time this server is spun up.
-            for (let i = 0; i < customers.length; i++) { 
-                const customer = customers[i];
+            for (let i = 0; i < comments.length; i++) { 
+                const comment = comments[i];
 
-                db.comments.save(customer, function(err, res) {
+                db.comments.save(comment, function(err, res) {
                     // Something went wrong, return error
                     if(err) {
                         console.log(err);
@@ -86,7 +74,7 @@ exports.initial = () => {
                         // Success! Return json data we sent
                         console.log('Success. New profile saved: '+JSON.stringify(res));
 
-                        if (i === customers.length-1) {
+                        if (i === comments.length-1) {
                             console.log(">>> Done - Initial Data!");
                             return null;
                         };
@@ -100,7 +88,7 @@ exports.initial = () => {
 // POST a Comment
 exports.create = (req, res) => {
     // Data passed from client-side form
-    const comment = new Customer(req.body);
+    const comment = new Comment(req.body);
     // Validate there is json data
     // If empty properties, send error response
     if (!comment) {
@@ -157,25 +145,25 @@ exports.findOne = (req, res) => {
 // UPDATE a Comment
 exports.update = (req, res) => {
     // Data passed from client-side form
-    var comment = req.body._id;
+    const comment = new Comment(req.body);
+    
     // Validate there is json data
     // If empty properties, send error response
     if (!comment) {
-        res.status(400);
-        res.json({
-            "error": "Invalid Data"
+        res.status(400).json({
+            error: "Invalid Data Submission"
         });
     // Otherwise OK, so save data
     } else {
-        db.comments.save(comment, function(err, comment) {
+        db.comments.update( {_id: mongojs.ObjectId(req.body._id)}, comment, function(err, comment) {
             // Something went wrong, return error
             if(err) {
                 return res.status(500).json({
-                    msg: "Error updating customer with id " + req.params.commentId
+                    msg: "Error updating customer with id " + req.body._id
                 });
             }
             // Success! Return json data we sent
-            console.log('Success. New profile saved: '+JSON.stringify(comment));
+            console.log('Success. New profile saved: ' + JSON.stringify(comment));
             res.json(comment);
         });
     }

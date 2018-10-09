@@ -1,9 +1,10 @@
-const CustomerSchema = {
-    _id: String,
-    firstname: String,
-    lastname: String,
-    age: { type: Number, min: 18, max: 65, required: true },
-    hobbies: String['']
+function CommentSchema(data) {
+    return comment = {
+        firstname: data.firstname || 'Joe',
+        lastname: data.lastname || 'Blow',
+        age: data.age || 0,
+        hobbies: data.hobbies || []
+    }
 };
 
-module.exports = CustomerSchema;
+module.exports = CommentSchema;
