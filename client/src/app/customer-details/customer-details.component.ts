@@ -14,7 +14,7 @@ import { Location } from '@angular/common';
 })
 export class CustomerDetailsComponent implements OnInit {
 
-  customer = new Customer() ;
+  comment = new Customer();
   submitted: boolean = false;
   message: string;
   hobbyInputVal: string;
@@ -31,18 +31,18 @@ export class CustomerDetailsComponent implements OnInit {
     this.hobbyInputVal = '';
     // Get the customer details via their id in url from server
     this.customerService.getCustomer(id)
-      .subscribe(customer => {
-        this.customer = customer;
+      .subscribe(comment => {
+        this.comment = comment;
         this.showSpinner = false; // Hide spinner
         this.hobbyInputVal = '';
       });
   }
 
   deleteHobby(hobby): void {
-    for (let index = 0; index < this.customer.hobbies.length; index++) {
-      if (this.customer.hobbies[index] == hobby) {
+    for (let index = 0; index < this.comment.hobbies.length; index++) {
+      if (this.comment.hobbies[index] == hobby) {
         // Delete this item from array
-        this.customer.hobbies.splice(index, 1);
+        this.comment.hobbies.splice(index, 1);
       }
     }
   }
@@ -51,17 +51,17 @@ export class CustomerDetailsComponent implements OnInit {
     if (hobby != '') {
       console.log(hobby+', added to hobbies');
       // Add a hobby to start of array
-      if (!this.customer.hobbies) {
-        this.customer.hobbies = [];
+      if (!this.comment.hobbies) {
+        this.comment.hobbies = [];
       }
-      this.customer.hobbies.unshift(hobby);
+      this.comment.hobbies.unshift(hobby);
       this.hobbyInputVal = ''; // Clear hobby input val
     }
   }
 
   update(): void {
     this.submitted = true;
-    this.customerService.updateCustomer(this.customer)
+    this.customerService.updateCustomer(this.comment)
         .subscribe(result => {
           this.message = "Hero Updated Successfully!";
           this.hobbyInputVal = ''; // Clear hobby input val
@@ -70,7 +70,7 @@ export class CustomerDetailsComponent implements OnInit {
 
   delete(): void {
     this.submitted = true;
-    this.customerService.deleteCustomer(this.customer._id)
+    this.customerService.deleteCustomer(this.comment._id)
         .subscribe(result => this.message = "Hero Deleted Successfully!");
   }
 

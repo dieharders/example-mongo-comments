@@ -6,20 +6,20 @@ import { CustomerDetailsComponent } from '../customer-details/customer-details.c
 
 const routes: Routes = [
    { 
-     path: 'customers', 
+     path: 'comments', 
      component: CustomerComponent 
    },
    { 
-     path: 'customer/add', 
+     path: 'comment/add', 
      component: AddCustomerComponent 
    },
    { 
-     path: 'customers/:id',
+     path: 'comments/:id',
      component: CustomerDetailsComponent 
    },
    { 
      path: '', 
-     redirectTo: 'customers', 
+     redirectTo: 'comments', 
      pathMatch: 'full'
    }, 
 ];

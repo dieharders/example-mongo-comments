@@ -21,7 +21,7 @@ export class CustomerService {
       return 'https://example-restapi-server.herokuapp.com/'; // Prod server
     }
   }
-  private customersUrl = this.checkUrl() + 'api/customers';  // URL to web api
+  private customersUrl = this.checkUrl() + 'api/comments';  // URL to web api
   constructor(
     private http: HttpClient
   ) { }

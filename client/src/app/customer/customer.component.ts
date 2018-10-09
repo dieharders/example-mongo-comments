@@ -14,7 +14,7 @@ import { animView } from '../animations/transitions.animation'; // Anim file
 
 export class CustomerComponent  implements OnInit {
 
-  customers: Customer[];
+  comments: Customer[];
 
   constructor(private customerService: CustomerService) {}
 
@@ -30,9 +30,9 @@ export class CustomerComponent  implements OnInit {
   getCustomers() {
     return this.customerService.getCustomers()
       .subscribe(
-        customers => {
-        console.log(customers);
-        this.customers = customers;
+        comments => {
+        console.log(comments);
+        this.comments = comments;
         this.showSpinner = false; // Hide spinner
         }
       );
