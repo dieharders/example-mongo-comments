@@ -1,27 +1,27 @@
 import { Component, OnInit } from '@angular/core';
-import { Customer } from '../customer';
-import { CustomerService } from '../customer.service';
+import { Comment } from '../commentSchema';
+import { CommentService } from '../comment.service';
 import { animView } from '../animations/transitions.animation'; // Anim file
 
 import { ActivatedRoute, Params } from '@angular/router';
 import { Location } from '@angular/common';
 
 @Component({
-  selector: 'app-customer-details',
-  templateUrl: './customer-details.component.html',
-  styleUrls: ['./customer-details.component.css'],
+  selector: 'app-comment-details',
+  templateUrl: './comment-details.component.html',
+  styleUrls: ['./comment-details.component.css'],
   animations: [animView] // add our animations
 })
-export class CustomerDetailsComponent implements OnInit {
+export class CommentDetailsComponent implements OnInit {
 
-  comment = new Customer();
+  comment = new Comment();
   submitted: boolean = false;
   message: string;
   hobbyInputVal: string;
   showSpinner: boolean = true; // Loading spinner stuff
 
   constructor(
-    private customerService: CustomerService,
+    private commentService: CommentService,
     private route: ActivatedRoute,
     private location: Location
   ) {}
@@ -29,8 +29,8 @@ export class CustomerDetailsComponent implements OnInit {
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id');
     this.hobbyInputVal = '';
-    // Get the customer details via their id in url from server
-    this.customerService.getCustomer(id)
+    // Get the comment details via their id in url from server
+    this.commentService.getComment(id)
       .subscribe(comment => {
         this.comment = comment;
         this.showSpinner = false; // Hide spinner
@@ -61,17 +61,17 @@ export class CustomerDetailsComponent implements OnInit {
 
   update(): void {
     this.submitted = true;
-    this.customerService.updateCustomer(this.comment)
+    this.commentService.updateComment(this.comment)
         .subscribe(result => {
-          this.message = "Hero Updated Successfully!";
+          this.message = "Comment Updated Successfully!";
           this.hobbyInputVal = ''; // Clear hobby input val
         });
   }
 
   delete(): void {
     this.submitted = true;
-    this.customerService.deleteCustomer(this.comment._id)
-        .subscribe(result => this.message = "Hero Deleted Successfully!");
+    this.commentService.deleteComment(this.comment._id)
+        .subscribe(result => this.message = "Comment Deleted Successfully!");
   }
 
   goBack(): void {

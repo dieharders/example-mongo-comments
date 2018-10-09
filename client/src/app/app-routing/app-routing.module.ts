@@ -1,27 +1,27 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { CustomerComponent } from '../customer/customer.component';
-import { AddCustomerComponent } from '../add-customer/add-customer.component';
-import { CustomerDetailsComponent } from '../customer-details/customer-details.component';
+import { CommentsComponent } from '../comments-list/comments-list.component';
+import { AddCommentComponent } from '../add-comment/add-comment.component';
+import { CommentDetailsComponent } from '../comment-details/comment-details.component';
 
 const routes: Routes = [
-   { 
-     path: 'comments', 
-     component: CustomerComponent 
+   {
+     path: 'comments',
+     component: CommentsComponent
    },
-   { 
+   {
      path: 'comment/add', 
-     component: AddCustomerComponent 
+     component: AddCommentComponent
    },
-   { 
+   {
      path: 'comments/:id',
-     component: CustomerDetailsComponent 
+     component: CommentDetailsComponent
    },
-   { 
-     path: '', 
-     redirectTo: 'comments', 
+   {
+     path: '',
+     redirectTo: 'comments',
      pathMatch: 'full'
-   }, 
+   },
 ];
 
 @NgModule({

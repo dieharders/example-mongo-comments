@@ -8,17 +8,17 @@ import { HttpClientModule }    from '@angular/common/http';
 import { AppRoutingModule }     from './app-routing/app-routing.module';
 
 import { AppComponent } from './app.component';
-import { CustomerComponent } from './customer/customer.component';
-import { CustomerDetailsComponent } from './customer-details/customer-details.component';
-import { AddCustomerComponent } from './add-customer/add-customer.component';
+import { CommentsComponent } from './comments-list/comments-list.component';
+import { CommentDetailsComponent } from './comment-details/comment-details.component';
+import { AddCommentComponent } from './add-comment/add-comment.component';
 import { LoadingSpinnerComponent } from './animations/loading-spinner/loading-spinner.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    CustomerComponent,
-    CustomerDetailsComponent,
-    AddCustomerComponent,
+    CommentsComponent,
+    CommentDetailsComponent,
+    AddCommentComponent,
     LoadingSpinnerComponent
   ],
   imports: [

@@ -3,7 +3,7 @@
 <loading-spinner *ngIf="showSpinner"></loading-spinner>
 
 <div [hidden]="submitted" [@transitionView]>
-    <form #detailCustomerForm="ngForm">
+    <form #detailCommentForm="ngForm">
       <div class="form-group">
         <label for="firstname">First Name</label>
         <input type="text" class="form-control" id="firstname" required
@@ -54,7 +54,7 @@
 
       <div class="btn-group btn-group-sm">
         <button type="button" class="btn btn-dark" (click)="goBack()">Back</button>
-        <button type="button" class="btn btn-dark" (click)="update()" [disabled]="!detailCustomerForm.form.valid">Update</button>
+        <button type="button" class="btn btn-dark" (click)="update()" [disabled]="!detailCommentForm.form.valid">Update</button>
         <button type="button" class="btn btn-dark" (click)="delete()">Delete</button>
 	    </div>
     </form>

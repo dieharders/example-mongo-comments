@@ -1,5 +1,5 @@
-// Customer schema
-export class Customer {
+// Comment schema
+export class Comment {
     _id: string;
     firstname: string;
     lastname: string;

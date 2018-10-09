@@ -1,26 +1,26 @@
 import { Component, OnInit } from '@angular/core';
 
-import { Customer } from '../customer';
-import { CustomerService } from '../customer.service';
+import { Comment } from '../commentSchema';
+import { CommentService } from '../comment.service';
 import { animView } from '../animations/transitions.animation'; // Anim file
 
 import { Location } from '@angular/common';
 
 @Component({
-  selector: 'app-add-customer',
-  templateUrl: './add-customer.component.html',
-  styleUrls: ['./add-customer.component.css'],
+  selector: 'app-add-comment',
+  templateUrl: './add-comment.component.html',
+  styleUrls: ['./add-comment.component.css'],
   animations: [animView] // add our animations
 })
 
-export class AddCustomerComponent{
+export class AddCommentComponent{
 
-  customer = new Customer();
+  comment = new Comment();
   submitted = false;
   hobbyInputVal: string;
 
   constructor(
-    private customerService: CustomerService,
+    private commentService: CommentService,
     private location: Location
   ) { }
   
@@ -28,30 +28,30 @@ export class AddCustomerComponent{
     if (hobby != '') {
       console.log(hobby+', added to hobbies');
       // Add a hobby to start of array
-      if (!this.customer.hobbies) {
-        this.customer.hobbies = [];
+      if (!this.comment.hobbies) {
+        this.comment.hobbies = [];
       }
-      this.customer.hobbies.unshift(hobby);
+      this.comment.hobbies.unshift(hobby);
       // Clear hobby input val
       this.hobbyInputVal = '';
     }
   }
 
   deleteHobby(hobby): void {
-    for (let index = 0; index < this.customer.hobbies.length; index++) {
-      if (this.customer.hobbies[index] == hobby) {
+    for (let index = 0; index < this.comment.hobbies.length; index++) {
+      if (this.comment.hobbies[index] == hobby) {
         // Delete this item from array
-        this.customer.hobbies.splice(index, 1);
+        this.comment.hobbies.splice(index, 1);
       }
     }
   }
 
-  newCustomer(): void {
+  newComment(): void {
     this.submitted = false;
-    this.customer = new Customer();
+    this.comment = new Comment();
   }
 
-  addCustomer() {
+  addComment() {
     this.submitted = true;
     this.hobbyInputVal = ''; // Clear hobby input val
     this.save();
@@ -62,8 +62,8 @@ export class AddCustomerComponent{
   }
 
   private save(): void {
-    console.log(this.customer);
-    this.customerService.addCustomer(this.customer)
+    console.log(this.comment);
+    this.commentService.addComment(this.comment)
         .subscribe();
   }
 }
