@@ -54,40 +54,18 @@ html, container, body {
 
 .alert.alert-danger {color: #ff3265}
 
-.form-control  {
-    color: hsl(345, 100%, 60%);
-    background-color: rgba(255, 255, 255, 0.4);
-    border-color: rgba(255, 255, 255, 0.4);
-}
-.form-control:invalid {
-    border-color: rgba(255, 255, 255, 0.4);
-    border-left: 5px solid hsl(0, 0%, 100%);
-}
-.form-control:valid {
-    color: #211d57;
-}
-.form-control:focus {
-    color: #211d57;
-    background-color: rgba(255, 255, 255, 0.9);
-    border-color: rgba(255, 255, 255, 0.9);
-}
-.form-control::placeholder  {color: #9233ff}
-
-.badge {
-    color: #211d57;
-    background-color: rgba(255, 255, 255, 0.267);
-    border-color: rgba(255, 255, 255, 0.267);
-}
 .badge.badge-light {
     font-size: 12pt;
     font-weight: lighter;
     color: rgb(44, 29, 253);
 }
-span.badge.badge-dark {
-    background-color: #211d57c2;
-}
 
-h1, h3, h5, label, p {color: #211d57}
+h1, h3, h5, label {color: #211d57}
+
+p {
+    color: rgb(238, 238, 238);
+    margin-bottom: 8px;
+}
 
 .btn.btn-dark {
     color: hsl(0, 0%, 100%);

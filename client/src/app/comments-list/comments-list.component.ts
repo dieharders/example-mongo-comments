@@ -23,7 +23,7 @@ export class CommentsComponent  implements OnInit {
   // Show the main hero list?
   showComments: boolean = false;
   // Lookup array of emoji avatars
-  emojis: string[] = ['😄', '😀', '🤣', '😂', '😉', '🤢', '😎', '😋', '🤩', '🤐', '😴', '😱', '😭', '🤑', '🤔'];
+  emojis: string[] = ['😄', '😀', '🤣', '😂', '😉', '🤢', '😎', '😋', '🤩', '🤐', '😴', '😱', '😭', '🤑', '🤔', '😡', '😺', '👽', '👻'];
 
   ngOnInit(): void {
      this.getComments();

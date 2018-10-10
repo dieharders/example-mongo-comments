@@ -1,18 +1,32 @@
 <loading-spinner *ngIf="showSpinner"></loading-spinner>
 
+<div class="addComment">
+  <div class="avatar">🙂</div>
+  <span class="commentContainer">
+    <div class="form-group">
+      <input type="text" class="comment-input" id="comment"
+      placeholder="Add a public comment..." 
+      [(ngModel)]="comment.comment" name="comment" #comment="ngModel">
+    </div>
+  </span>
+  <div class="commentBtnContainer">
+    <button class="cancelBtn btn btn-light btn-sm">CANCEL</button>
+    <button class="commitCommentBtn btn btn-light btn-sm">COMMENT</button>
+  </div>
+</div>
+
 <div class="commentOptionBtns">
-  <div class="commentsTotal"><h3 *ngIf="!showSpinner">{{comments.length}} Comments</h3></div>
+  <div class="commentsTotal"><p *ngIf="!showSpinner">{{comments.length}} Comments</p></div>
   <button class="sortBtn btn btn-light btn-sm">SORT BY</button>
 </div>
+
 <div *ngIf="!showSpinner">
-  <a [routerLink]="['/comments/id']">
     <div class="commentSelect" *ngFor="let comm of comments; let rowIndex=index" [@transitionView]>
       <div class="avatar">{{comm.avatar}}</div>
       <span class="commentContainer">
         <span class="name">{{comm.name}}</span> <span class="timestamp"> 1 month ago</span>
         <p class="comment">{{comm.comment}}</p>
-        <button class="badge badge-dark"><span class="like">Like ⭐{{comm.likes}}</span></button>
+        <button class="badge badge-dark"><div class="like">Like ⭐{{comm.likes}}</div></button>
       </span>
     </div>
-  </a>
 </div>
