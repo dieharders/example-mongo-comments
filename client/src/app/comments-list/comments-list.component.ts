@@ -12,9 +12,10 @@ import { animView } from '../animations/transitions.animation'; // Anim file
   animations: [animView] // add our animations
 })
 
-export class CommentsComponent  implements OnInit {
+export class CommentsComponent implements OnInit {
 
   comments: Comment[];
+  comment = new Comment();
 
   constructor(private commentService: CommentService) {}
 
@@ -38,9 +39,7 @@ export class CommentsComponent  implements OnInit {
           this.showSpinner = false; // Hide spinner
           // Assign random avatars
           for (let index = 0; index < this.comments.length; index++) {
-            let randNum = Math.floor(Math.random() * (this.emojis.length-1) ); // get random index in comments
-            console.log(randNum);
-            
+            let randNum = Math.floor(Math.random() * (this.emojis.length-1) ); // get random index in comments            
             this.comments[index].avatar = this.emojis[randNum]; // assign emoji to comment avatar
           }
         }
@@ -49,5 +48,16 @@ export class CommentsComponent  implements OnInit {
 
   showCommentsList() {
     this.showComments = true;
+  }
+
+  addComment() {
+    this.save();
+  }
+
+  private save(): void {
+    console.log(this.comment);
+    this.commentService.addComment(this.comment)
+        .subscribe();
+    // Reload the comments herer...
   }
 }

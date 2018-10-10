@@ -2,17 +2,19 @@
 
 <div class="addComment">
   <div class="avatar">🙂</div>
-  <span class="commentContainer">
-    <div class="form-group">
-      <input type="text" class="comment-input" id="comment"
-      placeholder="Add a public comment..." 
-      [(ngModel)]="comment.comment" name="comment" #comment="ngModel">
+  <form #addCommentForm="ngForm">
+    <span class="commentContainer">
+      <div class="form-group">
+        <input type="text" class="comment-input" id="comment"
+        placeholder="Add a public comment..." 
+        [(ngModel)]="comment.comment" name="comment" #comment.comment="ngModel">
+      </div>
+    </span>
+    <div class="commentBtnContainer">
+      <button class="cancelBtn btn btn-light btn-sm">CANCEL</button>
+      <button class="commitCommentBtn btn btn-light btn-sm" (click)="addComment()">COMMENT</button>
     </div>
-  </span>
-  <div class="commentBtnContainer">
-    <button class="cancelBtn btn btn-light btn-sm">CANCEL</button>
-    <button class="commitCommentBtn btn btn-light btn-sm">COMMENT</button>
-  </div>
+  </form>
 </div>
 
 <div class="commentOptionBtns">
