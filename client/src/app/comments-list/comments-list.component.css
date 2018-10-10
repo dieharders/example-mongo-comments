@@ -131,7 +131,13 @@ a {
     display: inline-block;
     margin-right: auto;
     border-style: none;
+    color: rgb(200, 200, 200);
+    background-color: rgba(19, 94, 255, 0);
     padding: 6px;
+    font-weight: bold;
+}
+.cancelBtn:hover {
+    color: #fff;
 }
 .commitCommentBtn {
     display: inline-block;
@@ -141,6 +147,7 @@ a {
     border-style: none;
     background-color: rgba(19, 93, 255, 0.623);
     color: #fff;
+    font-weight: bold;
 }
 .commitCommentBtn:hover {
     background-color: rgba(22, 84, 219, 0.856);
