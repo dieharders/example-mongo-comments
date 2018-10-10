@@ -1,23 +1,23 @@
 module.exports = InitialComments = [
     {
         name: "Johnny Doe",
-        comment: "This is an awesome comment!",
+        comment: "1st! This is an awesome comment! It is the mostest comment of all the comments. I disagree with everyone on how great their comments are and prefer mine over others.",
         timestamp: "Fri Sept 11 1984",
-        avatar: ":smiley:",
-        votes: 57
+        avatar: "😊",
+        likes: 51
     },
     {
         name: "Jackey Jillara",
-        comment: "There's some neat comments here.",
+        comment: "There's some neat comments here. Way better than youtubes...",
         timestamp: "Mon Aug 9 1962",
-        avatar: ":frown:",
-        votes: 2
+        avatar: "😫",
+        likes: 207
     },
     {
         name: "Downey Texler",
-        comment: "I like fried fish and chips...",
+        comment: "I like fried fish and chips becus ahm brihtish shashasha!!!",
         timestamp: "Sat Jan 22 1974",
-        avatar: ":giggle:",
-        votes: 31
+        avatar: "😘",
+        likes: 3159
     }
 ]
