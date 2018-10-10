@@ -8,14 +8,14 @@ module.exports = InitialComments = [
     },
     {
         name: "Jackey Jillara",
-        comment: "This is an awesome comment!",
+        comment: "There's some neat comments here.",
         timestamp: "Mon Aug 9 1962",
         avatar: ":frown:",
         votes: 2
     },
     {
         name: "Downey Texler",
-        comment: "This is an awesome comment!",
+        comment: "I like fried fish and chips...",
         timestamp: "Sat Jan 22 1974",
         avatar: ":giggle:",
         votes: 31
