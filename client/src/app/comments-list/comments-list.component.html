@@ -1,21 +1,18 @@
 <loading-spinner *ngIf="showSpinner"></loading-spinner>
 
-<div class="commentsTotal"><h3 *ngIf="!showSpinner">{{comments.length}} Comments</h3></div>
-<button class="sortBtn">SORT BY</button>
-<div *ngIf="!showSpinner">
-  <div class="commentSelect" *ngFor="let comm of comments; let rowIndex=index" [@transitionView]>
-    <a [routerLink]="['/comments', comm._id]">
-      <span class="badge badge-dark">{{rowIndex + 1}}</span> {{comm.name}}<br>
-      <span>{{comm.comment}}</span>
-    </a>
-  </div>
+<div class="commentOptionBtns">
+  <div class="commentsTotal"><h3 *ngIf="!showSpinner">{{comments.length}} Comments</h3></div>
+  <button class="sortBtn btn btn-light btn-sm">SORT BY</button>
 </div>
-
-<div id="logoContainer" [hidden]="showComments">
-    <h5 style="margin-top: 10px">Comments REST API</h5>
-    <br>
-    <p>Built with ❤️ MongoDB ❤️ Express.js ❤️ Angular6 ❤️ Node.js</p>
-    <button class="btn btn-light" (click)="showCommentsList()">
-      Start commenting...
-    </button>
+<div *ngIf="!showSpinner">
+  <a [routerLink]="['/comments/id']">
+    <div class="commentSelect" *ngFor="let comm of comments; let rowIndex=index" [@transitionView]>
+      <div class="avatar">{{comm.avatar}}</div>
+      <span class="commentContainer">
+        <span class="name">{{comm.name}}</span> <span class="timestamp"> 1 month ago</span>
+        <p class="comment">{{comm.comment}}</p>
+        <button class="badge badge-dark"><span class="like">Like ⭐{{comm.likes}}</span></button>
+      </span>
+    </div>
+  </a>
 </div>

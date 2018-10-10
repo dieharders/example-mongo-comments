@@ -1,23 +1,16 @@
 <div id="bgRotColor">
-  <div class="container">
-    <div class="row">
-      <div class="col-6" id="mainContent">
-        <div id="logo"></div>
-        <h1 class="nav justify-content-center">
-          Comments
-        </h1>
-        <br>
-        <ul class="nav justify-content-center">
-            <li class="nav-item">
-                <a routerLink="comments" id="retrieve" class="btn btn-light btn-sm" role="button" routerLinkActive="active">Reload</a> 
-            </li>
-            <li class="nav-item">
-                <a routerLink="comment/add" id="create" class="btn btn-light btn-sm" role="button" routerLinkActive="active">Create</a>
-            </li>
-        </ul>
-        <hr>
-        <router-outlet></router-outlet>
-      </div>
+  <div id="mainContent">
+    <div id="logo"></div>
+    <h1 class="nav justify-content-center">
+        Mongo Comments
+      </h1>
+    <div id="logoContainer">
+      <p>Built with ❤️ MongoDB ❤️ Express.js ❤️ Angular6 ❤️ Node.js</p>
+      <button class="btn btn-light" routerLink="comments" id="retrieve" routerLinkActive="active" role="button">
+        Reload Comments
+      </button>
     </div>
+    <hr>
+    <router-outlet></router-outlet>
   </div>
 </div>

@@ -5,5 +5,5 @@ export class Comment {
     comment: string;
     timestamp: string;
     avatar: string;
-    votes: number;
+    likes: number;
 }

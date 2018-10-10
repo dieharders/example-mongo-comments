@@ -4,17 +4,80 @@
 
 h1, h3, h5, label, a, p {color: hsl(244, 50%, 23%)}
 
+h3 {
+    color: #fff;
+    margin: auto;
+    margin-bottom: 8px;
+}
+
 a {
     text-decoration: none;
 }
 
+p {
+    color: rgb(238, 238, 238);
+    margin-bottom: 4px;
+}
+
+.commentContainer {
+    display: inline-block;
+    height: 100%;
+    margin-left: 60px;
+}
+.avatar {
+    display: inline-block;
+    position: absolute;
+    max-width: 48px;
+    height: 48px;
+    margin-left: 0px;
+    margin-bottom: auto;
+    margin-top: 0;
+    margin-right: 0.25em;
+    padding: 0px;
+    background-color: none;
+    border-style: solid;
+    border-width: 0px;
+    border-radius: 1em;
+    text-align: center;
+    font-size: 28pt;
+    line-height: -4px;
+}
+.name {
+    display: inline-block;
+    color: rgb(238, 238, 238);
+    font-size: 12pt;
+    margin-right: 0.5em;
+}
+.timestamp {
+    display: inline-block;
+    font-size: 11pt;
+    color: rgb(187, 187, 187);
+}
+.comment {
+    color: rgb(238, 238, 238);
+    font-size: 13pt;
+}
+.like {
+    font-size: 11pt;
+    color: rgb(224, 224, 224);
+}
+
+.commentOptionBtns {
+    height: auto;
+    padding: 8px;
+    margin-bottom: 0.25em;
+}
+
 .commentsTotal {
     display: inline-block;
+    margin: auto;
+    margin-right: 1em;
 }
 
 .sortBtn {
     display: inline-block;
-    margin-left: 1em;
+    margin: auto;
+    margin-bottom: 8px;
 }
 
 .badge {
@@ -24,27 +87,17 @@ a {
 
 .commentSelect {
     display: block;
+    position: relative;
     width: 100%;
-    padding: 4px;
+    height: auto;
+    max-height: 120px;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+    padding: 6px;
     background-color: none;
     font-size: 14pt;
 }
 .commentSelect:hover {
-    background-color: #ffffff41;
-    border-radius: 0.25em;
-}
-
-#logoContainer {
-    position: relative;
-    left: 50%;
-    top: 50%;
-    width: 300px;
-    height: 230px;
-    padding: 8px;
-    margin: auto;
-    margin-top: 20px;
-    margin-left: -150px;
-    background-color: #ffffff41;
-    border-radius: 0.5em;
-    text-align: center;
+    background-color: #ffffff23;
+    border-radius: 0.4em;
 }

@@ -27,24 +27,20 @@ html, container, body {
     background-size: cover;
     background-color: #fff;
     background-image: linear-gradient(20deg, #9851cf 35%, #5f6ecf 75%);
-    /*background-image: linear-gradient(20deg, rgb(155, 131, 188) 0%, rgb(81, 63, 149) 100%);*/
-    animation:colorRot 6s;
-    -moz-animation:colorRot 6s infinite; /* Firefox */
-    -webkit-animation:colorRot 6s infinite; /* Safari and Chrome */
+    animation:colorRot 16s infinite;
+    -moz-animation:colorRot 16s infinite; /* Firefox */
+    -webkit-animation:colorRot 16s infinite; /* Safari and Chrome */
 }
 @keyframes colorRot {
     0% {transform: rotate(0deg);}
-    50% {transform: rotate(180deg);}
     100% {transform: rotate(360deg);}
 }
 @-moz-keyframes colorRot /* Firefox */ {
     0% {transform: rotate(0deg);}
-    50% {transform: rotate(180deg);}
     100% {transform: rotate(360deg);}
 }
 @-webkit-keyframes colorRot /* Safari and Chrome */ {
     0% {transform: rotate(0deg);}
-    50% {transform: rotate(180deg);}
     100% {transform: rotate(360deg);}
 }
 
@@ -52,6 +48,7 @@ html, container, body {
     margin: auto;
     padding: 1em;
     width: 100%;
+    max-width: 640px;
     min-height: 475px;
 }
 
@@ -133,6 +130,5 @@ h1, h3, h5, label, p {color: #211d57}
     #mainContent {
         max-width: 100%;
         width: 100%;
-        flex: 0 0 100%;
     }
 }

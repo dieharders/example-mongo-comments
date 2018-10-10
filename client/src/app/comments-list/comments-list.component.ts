@@ -22,6 +22,8 @@ export class CommentsComponent  implements OnInit {
   showSpinner: boolean = true;
   // Show the main hero list?
   showComments: boolean = false;
+  // Lookup array of emoji avatars
+  emojis: string[] = ['😄', '😀', '🤣', '😂', '😉', '🤢', '😎', '😋', '🤩', '🤐', '😴', '😱', '😭', '🤑', '🤔'];
 
   ngOnInit(): void {
      this.getComments();
@@ -31,12 +33,20 @@ export class CommentsComponent  implements OnInit {
     return this.commentService.getComments()
       .subscribe(
         comments => {
-        console.log(comments);
-        this.comments = comments;
-        this.showSpinner = false; // Hide spinner
+          console.log(comments);
+          this.comments = comments;
+          this.showSpinner = false; // Hide spinner
+          // Assign random avatars
+          for (let index = 0; index < this.comments.length; index++) {
+            let randNum = Math.floor(Math.random() * (this.emojis.length-1) ); // get random index in comments
+            console.log(randNum);
+            
+            this.comments[index].avatar = this.emojis[randNum]; // assign emoji to comment avatar
+          }
         }
       );
   }
+
   showCommentsList() {
     this.showComments = true;
   }

@@ -7,9 +7,9 @@ h1 {
 a.btn {color: #211d57}
 a.btn:hover {color: #ff3265}
 
-#retrieve {
-    border-top-right-radius: 0;
-    border-bottom-right-radius: 0;
+#retrieve:hover {
+    color: #ff3265;
+    background-color: rgb(235, 235, 235);
 }
 #create {
     border-top-left-radius: 0;
@@ -22,4 +22,19 @@ a.btn:hover {color: #ff3265}
     height: 64px;
     background-image: url("./../assets/icons/logo.svg");
     margin: auto;
+}
+
+#logoContainer {
+    position: relative;
+    display: block;
+    width: auto;
+    max-width: 500px;
+    height: auto;
+    padding: 12px;
+    margin: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    background-color: #211d5713;
+    border-radius: 0.5em;
+    text-align: center;
 }
