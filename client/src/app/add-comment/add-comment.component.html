@@ -3,14 +3,14 @@
     <form #addCommentForm="ngForm">
 
       <div class="form-group">
-        <label for="firstname">First Name</label>
-        <input type="text" class="form-control" id="firstname"
-        placeholder="Enter Your FirstName" 
+        <label for="name">Name</label>
+        <input type="text" class="form-control" id="name"
+        placeholder="Enter Your Name" 
         required
-        [(ngModel)]="comment.firstname" name="firstname" #firstname="ngModel">
-        <div [hidden]="firstname.valid || firstname.pristine"
+        [(ngModel)]="comment.name" name="name" #name="ngModel">
+        <div [hidden]="name.valid || name.pristine"
              class="alert alert-danger">
-            First Name is required
+            Name is required
         </div>
       </div>
       
@@ -22,7 +22,7 @@
         [(ngModel)]="comment.lastname" name="lastname" #lastname="ngModel">
         <div [hidden]="lastname.valid || lastname.pristine"
              class="alert alert-danger">
-            Last Name is required
+            Comment is required
         </div>
       </div>
       
@@ -33,7 +33,7 @@
 </div>
 
 <div [hidden]="!submitted">
-  <p>Submitted Successfully! -> <span class="badge badge-light">{{comment.firstname}}  {{comment.lastname}}</span></p>
+  <p>Submitted Successfully! -> <span class="badge badge-light">{{comment.name}}</span></p>
 	<div class="btn-group btn-group-sm">
     	<button type="button" class="btn btn-dark" (click)="newComment(); addCommentForm.reset()">Continue</button>
     </div>

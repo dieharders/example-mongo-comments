@@ -8,18 +8,28 @@ a {
     text-decoration: none;
 }
 
+.commentsTotal {
+    display: inline-block;
+}
+
+.sortBtn {
+    display: inline-block;
+    margin-left: 1em;
+}
+
 .badge {
     color: rgb(255, 255, 255);
     background-color: hsl(244, 50%, 23%);
 }
 
-.heroSelect {
-    display: inline-block;
+.commentSelect {
+    display: block;
+    width: 100%;
     padding: 4px;
     background-color: none;
     font-size: 14pt;
 }
-.heroSelect:hover {
+.commentSelect:hover {
     background-color: #ffffff41;
     border-radius: 0.25em;
 }
