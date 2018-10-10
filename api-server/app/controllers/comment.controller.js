@@ -3,7 +3,7 @@ const mongojs = require('mongojs');
 const db = mongojs(dbConfig.url, ['comments']); // Database 'collection' we want documents from
 
 //** Functions for MongoDB **//
-const Comment = require('../models/customer.model.js');
+const Comment = require('../models/comment.model.js');
 
 // Overwrite w/ default data
 exports.initial = () => {
@@ -17,48 +17,8 @@ exports.initial = () => {
             console.log('All DB data removed! ' + JSON.stringify(data) );
 
             // Initialize new data
-            var comments = [
-                {
-                    firstname: "Johnny",
-                    lastname: "Storm",
-                    age: 26,
-                    hobbies: [
-                        "Playing sports🏆",
-                        "Dating girls😎",
-                        "Catching fire🔥"
-                    ]
-                },
-                {
-                    firstname: "Sue",
-                    lastname: "Storm",
-                    age: 29,
-                    hobbies: [
-                        "Turning invisible✨",
-                        "Making costumes👘",
-                        "Being sassy"
-                    ]
-                },
-                {
-                    firstname: "Reed",
-                    lastname: "Richards",
-                    age: 47,
-                    hobbies: [
-                        "Being a dick🤬",
-                        "Being super stretchy",
-                        "Doing science⚗️"
-                    ]
-                },
-                {
-                    firstname: "Ben",
-                    lastname: "Grimm",
-                    age: 36,
-                    hobbies: [
-                        "Clobberin things💪",
-                        "Flying planes🛩️",
-                        "Playing football🏈"
-                    ]
-                }
-            ]
+            const comments = require('./initial.comments.js');
+            console.log(comments);
             
             // Save to MongoDB.
             // This will overwrite current database w/ default values above
@@ -159,7 +119,7 @@ exports.update = (req, res) => {
             // Something went wrong, return error
             if(err) {
                 return res.status(500).json({
-                    msg: "Error updating customer with id " + req.body._id
+                    msg: "Error updating comment with id " + req.body._id
                 });
             }
             // Success! Return json data we sent

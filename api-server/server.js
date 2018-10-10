@@ -11,8 +11,8 @@ const bodyParser = require('body-parser');
 app.use(bodyParser.json())
 
 // Connecting to the database -> initialize new data
-const customers = require('./app/controllers/customer.controller.js');
-customers.initial();
+const comments = require('./app/controllers/comment.controller.js');
+comments.initial();
 
 // Setup CORS
 const cors = require('cors');
@@ -24,7 +24,7 @@ const corsOptions = {
 app.use(cors(corsOptions));
 
 // Add routes
-require('./app/routes/customer.routes.js')(app);
+require('./app/routes/comment.routes.js')(app);
 
 // Set server ports/host
 const host = process.env.HOST || 'localhost';
