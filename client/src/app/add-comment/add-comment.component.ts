@@ -24,6 +24,7 @@ export class AddCommentComponent{
     private location: Location
   ) { }
   
+  /*
   formSubmitHobby(hobby): void {
     if (hobby != '') {
       console.log(hobby+', added to hobbies');
@@ -45,7 +46,8 @@ export class AddCommentComponent{
       }
     }
   }
-
+  */
+ 
   newComment(): void {
     this.submitted = false;
     this.comment = new Comment();

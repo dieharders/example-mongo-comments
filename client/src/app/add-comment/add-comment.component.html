@@ -15,7 +15,7 @@
       </div>
       
       <div class="form-group">
-        <label for="lastname">Last Name</label>
+        <label for="lastname">Comment</label>
         <input type="text" class="form-control" id="lastname"
         placeholder="Enter Your LastName"
         required
@@ -25,24 +25,6 @@
             Last Name is required
         </div>
       </div>
-
-      <!-- Edit Hobbies form -->
-      <form (ngSubmit)="formSubmitHobby(hobby.value)">
-          <div class="form-group">
-            <label for="hobby">Hobbies</label>
-            <input type="text" class="form-control" id="hobby"
-            placeholder="Press [Enter] to add Hobby"
-            [(ngModel)]="hobbyInputVal" name="hobby" #hobby="ngModel">
-          </div>
-        </form>
-        <!-- List out items from hobbies -->
-        <div class="form-group">
-          <span class="badge badge-light" *ngFor="let hobby of comment.hobbies" id="hobbyButton">
-            <div id="hobbyName">{{hobby}}</div>
-            <!-- Add a delete button for this item -->
-            <button type="button" class="btn btn-dark" (click)="deleteHobby(hobby)" title="Remove" id="removeHobbyBut">✖️</button>
-          </span>
-        </div>
       
       <div class="btn-group btn-group-sm">
         <button type="button" class="btn btn-dark" (click)="addComment()" [disabled]="!addCommentForm.form.valid">Add</button>

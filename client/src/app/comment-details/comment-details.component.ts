@@ -38,6 +38,7 @@ export class CommentDetailsComponent implements OnInit {
       });
   }
 
+  /*
   deleteHobby(hobby): void {
     for (let index = 0; index < this.comment.hobbies.length; index++) {
       if (this.comment.hobbies[index] == hobby) {
@@ -46,7 +47,7 @@ export class CommentDetailsComponent implements OnInit {
       }
     }
   }
-
+  
   formSubmitHobby(hobby): void {
     if (hobby != '') {
       console.log(hobby+', added to hobbies');
@@ -58,6 +59,7 @@ export class CommentDetailsComponent implements OnInit {
       this.hobbyInputVal = ''; // Clear hobby input val
     }
   }
+  */
 
   update(): void {
     this.submitted = true;

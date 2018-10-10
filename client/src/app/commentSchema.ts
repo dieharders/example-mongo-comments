@@ -2,7 +2,8 @@
 export class Comment {
     _id: string;
     firstname: string;
-    lastname: string;
-    age: number;
-    hobbies: string[];
+    comment: string;
+    timestamp: string;
+    avatar: string;
+    votes: number;
 }
