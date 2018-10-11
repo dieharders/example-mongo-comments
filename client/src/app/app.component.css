@@ -20,8 +20,9 @@ a.btn:hover {color: #ff3265}
     display: fixed;
     width: 64px;
     height: 64px;
-    background-image: url("./../assets/icons/logo.svg");
+    /*background-image: url("./../assets/icons/logo.svg");*/
     margin: auto;
+    font-size: 48px;
 }
 
 #logoContainer {
@@ -37,4 +38,5 @@ a.btn:hover {color: #ff3265}
     background-color: #211d5713;
     border-radius: 0.5em;
     text-align: center;
+    line-height: -4px;
 }

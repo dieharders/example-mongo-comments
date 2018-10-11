@@ -21,6 +21,7 @@ export class CommentService {
       return 'https://example-restapi-server.herokuapp.com/'; // Prod server
     }
   }
+  
   private commentsUrl = this.checkUrl() + 'api/comments';  // URL to web api
   constructor(
     private http: HttpClient
@@ -47,6 +48,8 @@ export class CommentService {
   }
 
   updateComment (comment: Comment): Observable<any> {
+    //console.log('sending' + JSON.stringify(comment) );
+    
     return this.http.put(this.commentsUrl, comment, httpOptions);
   }
 }

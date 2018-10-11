@@ -6,29 +6,30 @@
     <span class="commentContainer">
       <div class="form-group">
         <input type="text" class="comment-input" id="comment"
-        placeholder="Add a public comment..." 
+        placeholder="Add a public comment..."
         [(ngModel)]="comment.comment" name="comment" #comment.comment="ngModel">
       </div>
     </span>
     <div class="commentBtnContainer">
-      <button class="cancelBtn btn btn-light btn-sm">CANCEL</button>
-      <button class="commitCommentBtn btn btn-light btn-sm" (click)="addComment()">COMMENT</button>
+      <button class="cancelBtn btn btn-light btn-sm" (click)="clearComment()">CANCEL</button>
+      <button class="commitCommentBtn btn btn-light btn-sm" (click)="addComment()" [disabled]="!comment.comment">COMMENT</button>
     </div>
   </form>
 </div>
 
 <div class="commentOptionBtns">
   <div class="commentsTotal"><p *ngIf="!showSpinner">{{comments.length}} Comments</p></div>
-  <button class="sortBtn btn btn-light btn-sm">SORT BY</button>
+  <button class="sortBtn btn btn-light btn-sm" (click)="sortByRecent()">📆 SORT BY DATE</button>
+  <button class="sortBtn btn btn-light btn-sm" (click)="sortByLikes()">👍 SORT BY LIKES</button>
 </div>
 
 <div *ngIf="!showSpinner">
     <div class="commentSelect" *ngFor="let comm of comments; let rowIndex=index" [@transitionView]>
       <div class="avatar">{{comm.avatar}}</div>
       <span class="commentContainer">
-        <span class="name">{{comm.name}}</span> <span class="timestamp"> 1 month ago</span>
+        <span class="name">{{comm.name}}</span> <span class="timestamp"> {{comm.elapsed}}</span>
         <p class="comment">{{comm.comment}}</p>
-        <button class="badge badge-dark"><div class="like">Like ⭐{{comm.likes}}</div></button>
+        <button class="badge badge-dark" (click)="updateComment(comm._id)"><div class="like">Like 👍<span *ngIf="comm.likes > 0">{{comm.likes}}</span></div></button>
       </span>
     </div>
 </div>

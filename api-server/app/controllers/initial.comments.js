@@ -2,43 +2,43 @@ module.exports = InitialComments = [
     {
         name: "Johnny Doe",
         comment: "1st! This is an awesome comment! It is the mostest comment of all the comments. I disagree with everyone on how great their comments are and prefer mine over others.",
-        timestamp: "Fri Sept 11 1984",
+        timestamp: 1539193724797,
         avatar: "😊",
         likes: 51
     },
     {
         name: "Jackey Jillara",
         comment: "There's some neat comments here. Way better than youtubes...",
-        timestamp: "Mon Aug 9 1962",
+        timestamp: 539193724797,
         avatar: "😫",
         likes: 207
     },
     {
         name: "Downey Texler",
         comment: "I like fried fish and chips becus ahm brihtish shashasha!!!",
-        timestamp: "Sat Jan 22 1974",
+        timestamp: 153919724797,
         avatar: "😘",
         likes: 3159
     },
     {
-        name: "Johnny Doe",
-        comment: "1st! This is an awesome comment! It is the mostest comment of all the comments. I disagree with everyone on how great their comments are and prefer mine over others.",
-        timestamp: "Fri Sept 11 1984",
-        avatar: "😊",
-        likes: 51
+        name: "Danny Franko",
+        comment: "This is an awesome comment! It is the mostest comment of all the comments. I disagree with everyone on how great their comments are and prefer mine over others.",
+        timestamp: 1531193724797,
+        avatar: "🤢",
+        likes: 25
     },
     {
-        name: "Jackey Jillara",
+        name: "Kimmey Jallalla",
         comment: "There's some neat comments here. Way better than youtubes...",
-        timestamp: "Mon Aug 9 1962",
-        avatar: "😫",
-        likes: 207
+        timestamp: 1239193724797,
+        avatar: "🤐",
+        likes: 501
     },
     {
-        name: "Downey Texler",
+        name: "Ember Smolden",
         comment: "I like fried fish and chips becus ahm brihtish shashasha!!!",
-        timestamp: "Sat Jan 22 1974",
-        avatar: "😘",
-        likes: 3159
+        timestamp: 1511113724797,
+        avatar: "😱",
+        likes: 4269
     }
 ]

@@ -47,8 +47,12 @@ exports.initial = () => {
 
 // POST a Comment
 exports.create = (req, res) => {
+    // Lookup array of emoji avatars
+    let emojis = ['😄', '😀', '🤣', '😂', '😉', '🤢', '😎', '😋', '🤩', '🤐', '😴', '😱', '😭', '🤑', '🤔', '😡', '😺', '👽', '👻'];
+
     // Data passed from client-side form
     const comment = new Comment(req.body);
+
     // Validate there is json data
     // If empty properties, send error response
     if (!comment) {
@@ -58,6 +62,18 @@ exports.create = (req, res) => {
         });
     // Otherwise OK, so save data
     } else {
+        // Assign random name
+        let firstNames = ['Joe', 'Sarah', 'Sasha', 'Checkov', 'Charlie', 'Ouchey', 'Hamilton', 'Foster'];
+        let lastNames = ['Nurbs', 'Patsy', 'Dolas', 'Checkpoin', 'Jackpot', 'Janeyway', 'Dallas', 'Curtsey'];
+        let randNumX = Math.floor(Math.random() * (firstNames.length-1) );
+        let randNumY = Math.floor(Math.random() * (lastNames.length-1) );
+        comment.name = firstNames[randNumX] + ' ' + lastNames[randNumY];
+        // Assign random emoji avatar to comment
+        let randNum = Math.floor(Math.random() * (emojis.length-1) ); // get random emoji
+        comment.avatar = emojis[randNum]; // assign emoji to comment
+        // Set properties
+        comment.timestamp = Date.now();
+        // Save
         db.comments.save(comment, function(err, comment) {
             // Something went wrong, return error
             if(err) {
@@ -102,10 +118,13 @@ exports.findOne = (req, res) => {
         res.json(comment);
     });
 };
-// UPDATE a Comment
+// UPDATE a Comment (increment the 'likes')
 exports.update = (req, res) => {
     // Data passed from client-side form
     const comment = new Comment(req.body);
+    console.log('likes ' + comment.likes);
+    // Increment 'likes'
+    comment.likes += 1;
     
     // Validate there is json data
     // If empty properties, send error response
@@ -115,16 +134,16 @@ exports.update = (req, res) => {
         });
     // Otherwise OK, so save data
     } else {
-        db.comments.update( {_id: mongojs.ObjectId(req.body._id)}, comment, function(err, comment) {
+        db.comments.update( {_id: mongojs.ObjectId(req.body._id)}, comment, function(err, result) {
             // Something went wrong, return error
             if(err) {
                 return res.status(500).json({
                     msg: "Error updating comment with id " + req.body._id
                 });
             }
-            // Success! Return json data we sent
-            console.log('Success. New profile saved: ' + JSON.stringify(comment));
-            res.json(comment);
+            // Success! Return updated object
+            console.log('Success. New profile saved: ' + JSON.stringify(this.comment));
+            res.json(this.comment);
         });
     }
 };
