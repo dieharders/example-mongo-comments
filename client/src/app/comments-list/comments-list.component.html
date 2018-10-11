@@ -1,6 +1,4 @@
-<loading-spinner *ngIf="showSpinner"></loading-spinner>
-
-<div class="addComment">
+<div class="addComment" *ngIf="!showSpinner">
   <div class="avatar">🙂</div>
   <form #addCommentForm="ngForm">
     <span class="commentContainer">
@@ -17,11 +15,13 @@
   </form>
 </div>
 
-<div class="commentOptionBtns">
-  <div class="commentsTotal"><p *ngIf="!showSpinner">{{comments.length}} Comments</p></div>
-  <button class="sortBtn btn btn-light btn-sm" (click)="sortByRecent()">📆 SORT BY DATE</button>
-  <button class="sortBtn btn btn-light btn-sm" (click)="sortByLikes()">👍 SORT BY LIKES</button>
+<div class="commentOptionBtns" *ngIf="!showSpinner">
+  <div class="commentsTotal"><p>{{comments.length}} Comments</p></div>
+  <button class="sortBtn btn btn-light btn-sm" (click)="sortByRecent()">SORT BY DATE 📆</button>
+  <button class="sortBtn btn btn-light btn-sm" (click)="sortByLikes()">SORT BY LIKES 👍</button>
 </div>
+
+<loading-spinner *ngIf="showSpinner"></loading-spinner>
 
 <div *ngIf="!showSpinner">
     <div class="commentSelect" *ngFor="let comm of comments; let rowIndex=index" [@transitionView]>

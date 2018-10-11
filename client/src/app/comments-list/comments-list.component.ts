@@ -58,7 +58,8 @@ export class CommentsComponent implements OnInit {
     return this.commentService.getComments()
       .subscribe(
         comments => {
-          console.log(comments);
+          //console.log(comments);
+          
           this.comments = comments;
           this.showSpinner = false; // Hide spinner
           // Check timestamps and label the difference in time (1 month ago) since post
@@ -97,7 +98,8 @@ export class CommentsComponent implements OnInit {
   }
 
   private save(): void {
-    console.log(this.comment);
+    //console.log(this.comment);
+    
     this.commentService.addComment(this.comment)
         .subscribe( () => {
           // Reload the comments
@@ -117,7 +119,8 @@ export class CommentsComponent implements OnInit {
     // Update this comment on server
     this.commentService.updateComment(elem)
         .subscribe(result => {
-          console.log("Comment Updated Successfully! " + JSON.stringify(result) );
+          //console.log("Comment Updated Successfully! " + JSON.stringify(result) );
+          
           // Get back result and update the local data model (in this case only 'likes')
           this.comments[index].likes = result.likes;
     });
