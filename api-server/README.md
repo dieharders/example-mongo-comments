@@ -11,6 +11,8 @@ This project is primarily intended to illustrate getting and fetching data from 
 - Records the internet (UTC) time for each comment upon addition
 - Assigns a random name and avatar (emoji) for each comment added
 
+** Also note, there are initial comments stored in the server which are used to overwrite those in the MongoDB each time the server is spun up. If you do not want this feature and want the comments to persist, then remove the code under the `exports.initial` function in `comment.controller.js`.
+
 ## Development server
 
 Run `npm start` for a dev server. The API server will be available at `http://localhost:8080/` for your front-end to contact. The server will automatically reload if you change any of the source files.
