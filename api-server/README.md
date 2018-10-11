@@ -1,9 +1,15 @@
-# MongoDB Comments (REST API) Server
+# MongoDB Comments - (REST API) Server
 
-## Live demo: https://example.com/
-This is a simple example of a Back-End that takes requests from a client and returns data stored in a Mongo database back to the client. In this example the comments of various users are stored and retrieved from mLab.
+## Live demo: https://example-mongo-comments-client.firebaseapp.com/
 
-This project is primarily intended to illustrate getting and fetching data from a MongoDB.
+This is a simple example of a Back-End (using Node.js & Express.js) that takes requests from a client and returns data stored in a cloud Mongo database back to the client. In this example the comments of various users are stored and retrieved from mLab.
+
+This project is primarily intended to illustrate getting and fetching data from a MongoDB. It does the following:
+
+- Stores/Retrieves comments from external MongoDB service (mLab)
+- Increments a 'like' counter associated with each comment
+- Records the internet (UTC) time for each comment upon addition
+- Assigns a random name and avatar (emoji) for each comment added
 
 ## Development server
 
@@ -22,7 +28,7 @@ Since this project is part of a multi-app git repository, deploying to something
 
 ## Setting Cross Origin Resource Sharing (CORS)
 
-If you intend to host this server on a different domain than the Front-End, be sure to set the CORS options in `server.js`. Point the `hostUrl` to your Front-End's domain url.
+If you intend to host this server on a different domain than the Front-End, be sure to set the CORS options in `server.js`. Add an environment variable `CLIENT` to point the `hostUrl` to your Front-End's domain url.
 
 ## Server Host & Port ENV variables
 

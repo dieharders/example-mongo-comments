@@ -1,6 +1,14 @@
-# MongoDB Comments
+# MongoDB Comments - Web Client
 
-## Angular6 Web Client
+## Live demo: https://example-mongo-comments-client.firebaseapp.com/
+
+This is an example MEAN stack app that displays comments stored in a cloud version of MongoDB. You can do the following:
+
+- Add a comment
+- 'Like' a comment
+- Sort comments based on date added or likes
+
+## Angular6 Project
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.0.8.
 
