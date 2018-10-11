@@ -18,7 +18,7 @@ export class CommentService {
     if (url.search('localhost') > -1) {
       return 'http://localhost:8080/'; // For testing locally
     } else {
-      return 'https://example-restapi-server.herokuapp.com/'; // Prod server
+      return 'https://example-mongo-comments.herokuapp.com/'; // Prod server
     }
   }
   
@@ -48,8 +48,6 @@ export class CommentService {
   }
 
   updateComment (comment: Comment): Observable<any> {
-    //console.log('sending' + JSON.stringify(comment) );
-    
     return this.http.put(this.commentsUrl, comment, httpOptions);
   }
 }

@@ -11,6 +11,9 @@
 # firebase
 /.firebase
 
+# ENV files
+*.env
+
 # IDEs and editors
 /.idea
 .project

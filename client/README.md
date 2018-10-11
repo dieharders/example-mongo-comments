@@ -1,27 +1,39 @@
-# Angular6Httpclient
+# MongoDB Comments
+
+## Angular6 Web Client
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.0.8.
+
+## Setup
+
+Go to the `comment.service.ts` file and change the production server return statement for `checkUrl()` to point to your deployed server url.
 
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
 ## Build
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+Run `ng build` to build the project for development. The static files will be stored in the `dist/` directory.
+Run `ng build --prod` for a production build.
 
-## Running unit tests
+## Live Deployment (Heroku)
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+This project is already setup for deployment to Heroku.
+(Optional) You may choose to set an ENV variable for the host provider's (Heroku) port in `server.js`.
 
-## Running end-to-end tests
+*Note, it is not necessary to `ng build --prod` your app since the `postinstall` script in `package.json` will tell Heroku to do this automatically upon each deployment to Heroku `git push heroku master`.
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+## Live Deployment (Firebase)
 
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+If you would like to instead deploy to Firebase Hosting, do the following...
+- Build your app `ng build --prod` while in the project root dir. This will create a `/dist/<your-app-name>` folder.
+- Be sure to install the Firebase CLI if not already with `npm install -g firebase-tools`.
+- Then login to Firebase with `firebase login`.
+- Do `firebase init` in the top level directory of the angular app.
+- Stick with default settings except for the following...
+- Choose Firebase Hosting when asked to initialize features for the project.
+- When asked to set the public directory, set it to `dist/<your-app-name>`. The app name must now be specified for Angular 6+ apps, otherwise use `dist`.
+- Choose to configure as single-page app, yes.
+- If asked to overwrite index.html, no.
+- Then run `firebase deploy` BOOM!
