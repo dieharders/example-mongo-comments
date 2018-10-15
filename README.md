@@ -1,6 +1,6 @@
 # MongoDB Comments
 
-![Preview](https://github.com/dieharders/example-mongo-comments/blob/master/preview-1.JPG)
+![Preview](https://github.com/dieharders/example-mongo-comments/blob/master/preview.jpg)
 
 ## Live demo: https://example-mongo-comments-client.firebaseapp.com/
 
