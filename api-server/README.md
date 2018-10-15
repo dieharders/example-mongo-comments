@@ -1,5 +1,7 @@
 # MongoDB Comments - (REST API) Server
 
+![Preview](https://github.com/dieharders/example-mongo-comments/blob/master/preview.JPG)
+
 ## Live demo: https://example-mongo-comments-client.firebaseapp.com/
 
 This is a simple example of a Back-End (using Node.js & Express.js) that takes requests from a client and returns data stored in a cloud Mongo database back to the client. In this example the comments of various users are stored and retrieved from mLab.
