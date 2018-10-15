@@ -1,5 +1,7 @@
 # MongoDB Comments
 
+![Preview](https://github.com/dieharders/example-mongo-comments/blob/master/preview-1.JPG)
+
 ## Live demo: https://example-mongo-comments-client.firebaseapp.com/
 
 This is an example project that displays comments. You can do the following:

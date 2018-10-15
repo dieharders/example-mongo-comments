@@ -1,5 +1,7 @@
 # MongoDB Comments - Web Client
 
+![Preview](https://github.com/dieharders/example-unscrollbar/blob/master/preview-2.JPG)
+
 ## Live demo: https://example-mongo-comments-client.firebaseapp.com/
 
 This is an example MEAN stack app that displays comments stored in a cloud version of MongoDB. You can do the following:

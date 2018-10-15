@@ -1,6 +1,6 @@
 # MongoDB Comments - (REST API) Server
 
-![Preview](https://github.com/dieharders/example-mongo-comments/blob/master/preview.JPG)
+![Preview](https://github.com/dieharders/example-unscrollbar/blob/master/preview-2.JPG)
 
 ## Live demo: https://example-mongo-comments-client.firebaseapp.com/
 
