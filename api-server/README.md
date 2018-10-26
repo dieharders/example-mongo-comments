@@ -14,6 +14,8 @@ This project is primarily intended to illustrate getting and fetching data from 
 
 - Stores/Retrieves comments from external MongoDB service (Atlas)
 - Increments a 'like' counter associated with each comment
+- Delete a comment
+- Fetch a single comment
 - Records the internet (UTC) time for each comment upon addition
 - Assigns a random name and avatar (emoji) for each comment added
 
@@ -27,7 +29,7 @@ Run `npm start` for a dev server. The API server will be available at `http://lo
 
 ## If deploying to Heroku...
 
-Since this project is part of a multi-app git repository, deploying to something like Heroku can be difficult since it does not support pushing from a non-root directory. The following steps explain how to get around this...
+Since this project is part of a multi-app git repository (mono repo), deploying to something like Heroku can be difficult since it does not support pushing from a non-root directory. The following steps explain how to get around this...
 
 - Create the Heroku app.
 - Add the buildpack (in this case node.js).

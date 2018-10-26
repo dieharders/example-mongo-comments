@@ -8,7 +8,9 @@ This is an example MEAN stack app that displays comments stored in a cloud versi
 
 - Add a comment
 - 'Like' a comment
+- Delete a comment
 - Sort comments based on date added or likes
+- Calculate and display the elapsed time since date posted
 
 ## Angular6 Project
 
