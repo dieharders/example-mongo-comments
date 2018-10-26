@@ -8,7 +8,10 @@ This is an example project that displays comments. You can do the following:
 
 - Add a comment
 - 'Like' a comment
+- Delete a comment
 - Sort comments based on date added or likes
+- Calculate and display the elapsed time since date posted
+- Assign a random name and avatar (emoji) for each comment added
 
 ## MEAN Project
 
