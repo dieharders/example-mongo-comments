@@ -25,11 +25,16 @@
 
 <div *ngIf="!showSpinner">
     <div class="commentSelect" *ngFor="let comm of comments; let rowIndex=index" [@transitionView]>
+      <!-- Emoji Avatar for commenter -->
       <div class="avatar">{{comm.avatar}}</div>
       <span class="commentContainer">
         <span class="name">{{comm.name}}</span> <span class="timestamp"> {{comm.elapsed}}</span>
+        <!-- Comment Text -->
         <p class="comment">{{comm.comment}}</p>
-        <button class="badge badge-dark" (click)="updateComment(comm._id)"><div class="like">Like 👍<span *ngIf="comm.likes > 0">{{comm.likes}}</span></div></button>
+        <!-- Like Button -->
+        <button class="badge badge-dark inline" (click)="updateComment(comm._id)"><div class="like">Like 👍<span *ngIf="comm.likes > 0">{{comm.likes}}</span></div></button>
+        <!-- Delete Button -->
+        <button class="badge badge-dark inline" (click)="removeComment(comm._id)"><div class="like">Delete ❌</div></button>
       </span>
     </div>
 </div>

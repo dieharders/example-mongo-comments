@@ -30,7 +30,8 @@ export class CommentService {
   getComments (): Observable<Comment[]> {
     return this.http.get<Comment[]>(this.commentsUrl)
   }
-
+  
+  // Not used in this project
   getComment (id: string): Observable<Comment> {
     const url = `${this.commentsUrl}/${id}`;
     return this.http.get<Comment>(url);
@@ -40,10 +41,8 @@ export class CommentService {
     return this.http.post<Comment>(this.commentsUrl, comment, httpOptions);
   }
 
-  deleteComment (comment: Comment | string): Observable<Comment> {
-    const id = typeof comment === 'string' ? comment : comment._id;
+  deleteComment (id: string): Observable<any> {
     const url = `${this.commentsUrl}/${id}`;
-    
     return this.http.delete<Comment>(url, httpOptions);
   }
 

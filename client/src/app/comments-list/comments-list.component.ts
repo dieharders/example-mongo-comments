@@ -59,9 +59,8 @@ export class CommentsComponent implements OnInit {
       .subscribe(
         comments => {
           //console.log(comments);
-          
-          this.comments = comments;
-          this.showSpinner = false; // Hide spinner
+          this.comments = comments; // record result into local list
+          this.showCommentsList(true);
           // Check timestamps and label the difference in time (1 month ago) since post
           for (let index = 0; index < this.comments.length; index++) {
             let t = new Date(this.comments[index].timestamp);
@@ -82,8 +81,15 @@ export class CommentsComponent implements OnInit {
       );
   }
 
-  showCommentsList() {
-    this.showComments = true;
+  showCommentsList(show) {
+    if (show) {
+      this.showComments = true; // Show list
+      this.showSpinner = false; // Hide spinner
+    } else {
+      // Hide comments until they fetch
+      this.showComments = false;
+      this.showSpinner = true;
+    }
   }
 
   clearComment() {
@@ -102,6 +108,8 @@ export class CommentsComponent implements OnInit {
     
     this.commentService.addComment(this.comment)
         .subscribe( () => {
+          // Hide comments until they fetch
+          this.showCommentsList(false);
           // Reload the comments
           this.getComments();
     });
@@ -123,6 +131,21 @@ export class CommentsComponent implements OnInit {
           
           // Get back result and update the local data model (in this case only 'likes')
           this.comments[index].likes = result.likes;
+    });
+  }
+
+  // Delete the given comment
+  removeComment(id): void {
+    this.commentService.deleteComment(id)
+      .subscribe(result => {        
+        if ( result.n == 1) {
+          //console.log( JSON.stringify(result) );
+          console.log("Comment Deleted Successfully!");
+          // Hide comments until they fetch
+          this.showCommentsList(false);
+          // Fetch updated list of comments
+          this.getComments();
+        }
     });
   }
 }
