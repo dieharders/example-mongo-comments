@@ -1,5 +1,7 @@
 //** Functions for MongoDB **//
 
+// Import mongodb func for finding
+const ObjectId = require('mongodb').ObjectID;
 // Import comment construction model
 const Comment = require('../models/comment.model.js');
 // Get database connection
@@ -103,10 +105,10 @@ exports.findAll = (req, res) => {
     });
 };
 
-// FIND a Comment
+// FIND a Comment (Not used in front-end example. Left here for reference.)
 exports.findOne = (req, res) => {
     // Return one element using a document's id
-    collection.findOne( {"_id" : req.params.commentId}, function(err, comment) {
+    collection.findOne( {"_id" : ObjectId(req.params.commentId)}, function(err, comment) {
         // Return error if something fucks up
         if(err) {
             console.log('Error retrieving comment');
@@ -116,7 +118,7 @@ exports.findOne = (req, res) => {
         } else if (comment === null) {
             console.log('Error retrieving comment');
             return res.status(404).json({
-                msg: "Error retrieving comment!"
+                msg: "Error retrieving comment _id:"+req.params.commentId
             });
         }
         // Otherwise return content from db query
@@ -164,14 +166,19 @@ exports.delete = (req, res) => {
     // Otherwise OK, so remove data
     } else {
         // Remove one element using a document's id
-        collection.deleteOne( {"_id" : req.params.commentId}, function(err, comment) {
-            // Return error if something fucks up
+        collection.deleteOne( {"_id" : ObjectId(req.params.commentId)}, function(err, result) {
+            // Return error if something fucks up ('n' must return 1 indicating a deletion)
+            var obj = JSON.parse(result);            
             if(err) {
-                res.send(err);
+                console.log('Error deleting: '+err);
+                return res.send(err);
+            } else if (obj.n != 1) {
+                console.log('Error deleting _id:'+req.params.commentId);
+                return res.send(result);
             }
             // Otherwise return content from db query
             console.log('Profile '+req.params.commentId+' removed!');
-            res.json(comment);
+            res.json(result);
         });
     }
 };
