@@ -2,13 +2,17 @@
 
 ![Preview](https://github.com/dieharders/example-mongo-comments/blob/master/preview-2.jpg)
 
+## UPDATE
+
+The database service has been ported over to MongoDB's Atlas service, since mLab was recently bought by MongoDB and its servers will soon be sunsetted.
+
 ## Live demo: https://example-mongo-comments-client.firebaseapp.com/
 
-This is a simple example of a Back-End (using Node.js & Express.js) that takes requests from a client and returns data stored in a cloud Mongo database back to the client. In this example the comments of various users are stored and retrieved from mLab.
+This is a simple example of a Back-End (using Node.js & Express.js) that takes requests from a client and returns data stored in a cloud Mongo database back to the client. In this example the comments of various users are stored and retrieved from Atlas.
 
 This project is primarily intended to illustrate getting and fetching data from a MongoDB. It does the following:
 
-- Stores/Retrieves comments from external MongoDB service (mLab)
+- Stores/Retrieves comments from external MongoDB service (Atlas)
 - Increments a 'like' counter associated with each comment
 - Records the internet (UTC) time for each comment upon addition
 - Assigns a random name and avatar (emoji) for each comment added

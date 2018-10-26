@@ -1,14 +1,17 @@
-const dbConfig = require('../config/mongodb.config.js');
-const mongojs = require('mongojs');
-const db = mongojs(dbConfig.url, ['comments']); // Database 'collection' we want documents from
-
 //** Functions for MongoDB **//
-const Comment = require('../models/comment.model.js');
 
-// Overwrite w/ default data
+// Import comment construction model
+const Comment = require('../models/comment.model.js');
+// Get database connection
+const dbConfig = require('../config/mongodb.config.js');
+const database = dbConfig.getConn();
+// Database 'collection' we want documents from
+const collection = database.db("comments").collection("comments");
+
+// Overwrite all documents in collection w/ default data
 exports.initial = () => {
-    // Delete all data in db
-    db.comments.remove( {data: null}, function(err, data) {
+    // Delete all data in db (by passing empty {} in the filter parameter)
+    collection.deleteMany( {}, function(err, data) {
         // Return error if something fucks up
         if(err) {
             console.log(err);
@@ -26,7 +29,7 @@ exports.initial = () => {
             for (let i = 0; i < comments.length; i++) { 
                 const comment = comments[i];
 
-                db.comments.save(comment, function(err, res) {
+                collection.insertOne(comment, function(err, res) {
                     // Something went wrong, return error
                     if(err) {
                         console.log(err);
@@ -74,7 +77,7 @@ exports.create = (req, res) => {
         // Set properties
         comment.timestamp = Date.now();
         // Save
-        db.comments.save(comment, function(err, comment) {
+        collection.insertOne(comment, function(err, comment) {
             // Something went wrong, return error
             if(err) {
                 res.send(err);
@@ -87,8 +90,10 @@ exports.create = (req, res) => {
 };
 // FETCH all Comments
 exports.findAll = (req, res) => {
-    // Return all documents in 'tasks' collection from db.tasks
-    db.comments.find(function(err, data) {
+    // Return all documents in collection (by passing an empty {} in query parameter)
+    // **Must convert the returned data to array, otherwise a circular JSON error occurs,
+    // b/c the returned data is actually a cursor not the document itself.
+    collection.find({}).toArray(function(err, data) {
         // Send back error if something fucks up
         if(err) {
             res.send(err);
@@ -101,7 +106,7 @@ exports.findAll = (req, res) => {
 // FIND a Comment
 exports.findOne = (req, res) => {
     // Return one element using a document's id
-    db.comments.findOne( {_id: mongojs.ObjectId(req.params.commentId)}, function(err, comment) {
+    collection.findOne( {"_id" : req.params.commentId}, function(err, comment) {
         // Return error if something fucks up
         if(err) {
             console.log('Error retrieving comment');
@@ -122,7 +127,7 @@ exports.findOne = (req, res) => {
 exports.update = (req, res) => {
     // Data passed from client-side form
     const comment = new Comment(req.body);
-    console.log('likes ' + comment.likes);
+    console.log('current likes ' + comment.likes);
     // Increment 'likes'
     comment.likes += 1;
     
@@ -134,7 +139,7 @@ exports.update = (req, res) => {
         });
     // Otherwise OK, so save data
     } else {
-        db.comments.update( {_id: mongojs.ObjectId(req.body._id)}, comment, function(err, result) {
+        collection.updateOne( {"_id" : req.body._id}, { $set : {"likes":comment.likes} }, function(err, result) {
             // Something went wrong, return error
             if(err) {
                 return res.status(500).json({
@@ -159,7 +164,7 @@ exports.delete = (req, res) => {
     // Otherwise OK, so remove data
     } else {
         // Remove one element using a document's id
-        db.comments.remove( {_id: mongojs.ObjectId(req.params.commentId)}, function(err, comment) {
+        collection.deleteOne( {"_id" : req.params.commentId}, function(err, comment) {
             // Return error if something fucks up
             if(err) {
                 res.send(err);
