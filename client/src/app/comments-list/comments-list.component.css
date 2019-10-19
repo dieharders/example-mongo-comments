@@ -161,18 +161,17 @@ a {
     margin-right: auto;
     padding: 6px;
     border-style: none;
-    background-color: rgba(19, 93, 255, 0.623);
-    color: rgb(200, 200, 200);
+    background-color: rgba(19, 93, 255, 1.0);
+    color: #ffffff;
     font-weight: bold;
 }
 .commitCommentBtn:enabled:hover {
-    background-color: rgba(22, 84, 219, 0.856);
-    color: #ffffff;
+    background-color: rgba(22, 84, 219, 1.0);
 }
 .commitCommentBtn[disabled] {
     cursor: not-allowed;
     color: rgba(200, 200, 200, 0.671);
-    background-color: rgba(15, 75, 206, 0.527);
+    background-color: rgba(15, 75, 206, 0.75);
 }
 
 .badge {

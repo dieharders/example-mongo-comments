@@ -14,10 +14,10 @@ html, container, body {
 #bgRotColor:before {
     content: "";
     position: fixed;
-    width: 4000px;
-    height: 4000px;
-    top: -1666px;
-    left: -1666px;
+    width: 200vw; /* whatever is longest */
+    height: 200vw;
+    top: -100vw;
+    left: -100vw;
     margin: auto;
     padding: 0px;
     z-index: -1;
@@ -108,5 +108,24 @@ p {
     #mainContent {
         max-width: 100%;
         width: 100%;
+    }
+}
+
+@media all and (orientation:portrait) {
+    #bgRotColor:before {
+        /* whatever is longest */
+        width: 200vh;
+        height: 200vh;
+        top: -50vh;
+        left: -50vh;
+    }
+}
+@media all and (orientation:landscape) {
+    #bgRotColor:before {
+        /* whatever is longest */
+        width: 200vw;
+        height: 200vw;
+        top: -50vw;
+        left: -50vw;
     }
 }
