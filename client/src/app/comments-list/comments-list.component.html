@@ -17,8 +17,10 @@
 
 <div class="commentOptionBtns" *ngIf="!showSpinner">
   <div class="commentsTotal"><p>{{comments.length}} Comments</p></div>
-  <button class="sortBtn btn btn-light btn-sm" (click)="sortByRecent()">SORT BY DATE 📆</button>
-  <button class="sortBtn btn btn-light btn-sm" (click)="sortByLikes()">SORT BY LIKES 👍</button>
+  <div class="sortButtonContainer">
+    <button class="sortBtn btn btn-light btn-sm" (click)="sortByRecent()">SORT BY DATE 📆</button>
+    <button class="sortBtn btn btn-light btn-sm" (click)="sortByLikes()">SORT BY LIKES 👍</button>
+  </div>
 </div>
 
 <loading-spinner *ngIf="showSpinner"></loading-spinner>
